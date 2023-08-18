@@ -7,7 +7,7 @@ import requests.exceptions
 
 
 def main():
-    st.title("Newsletter Dashboard")
+    
 
     # st.image("path_to_your_image.jpg",
     #          caption="cover photo", use_column_width=True)
@@ -20,40 +20,9 @@ def main():
         "cover4.webp"
     ]
 
-    # Load custom JavaScript code
-    st.markdown(
-        """
-        <div id="carousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <script>
-                var imageUrls = """ + str(image_urls) + """;
-                for (var i = 0; i < imageUrls.length; i++) {
-                    var imageUrl = imageUrls[i];
-                    var className = (i === 0) ? "carousel-item active" : "carousel-item";
-                    document.write('<div class="' + className + '"><img src="' + imageUrl + '" class="d-block w-100" alt="..."></div>');
-                }
-                </script>
-            </div>
-            <a class="carousel-control-prev" href="#carousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </a>
-        </div>
-        <style>
-        .carousel-inner {
-            max-height: 500px;
-            overflow: hidden;
-        }
-        </style>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
-        """
-        , unsafe_allow_html=True
-    )
-
+    selected_image_index = st.image_slider("", image_urls, format="URL")
+   
+    st.title("Newsletter Dashboard")
     available_podcast_info = create_dict_from_json_files('.')
 
     # Left section - Input fields

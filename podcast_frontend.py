@@ -74,8 +74,10 @@ def main():
 
     if process_button:
         # Clear the existing content
-        st.header("Newsletter Content")
-        st.empty()
+        col1.empty()
+        col2.empty()
+        col3.empty()
+        col4.empty()
 
         # Call the function to process the URLs and retrieve podcast guest information
         podcast_info = process_podcast_info(url)

@@ -100,17 +100,19 @@ def main():
 
         with col3:
             st.subheader("Podcast Guest")
-            st.write(podcast_info['podcast_guest']['name'])
+            st.write(podcast_info['podcast_guest'])
 
         with col4:
-            st.subheader("Podcast Guest Details")
             try:
                 podcast_guest_name = podcast_info['podcast_guest']
-                input = wikipedia.page(podcast_guest_name, auto_suggest=False)
-                podcast_guest_info = input.summary
-                st.write(podcast_guest_info)
-            except (KeyError):
-                st.write("No Info found")
+                try:
+                    input = wikipedia.page(podcast_guest_name, auto_suggest=False)
+                    podcast_guest_info = input.summary
+                    st.write(podcast_guest_info)
+                except wikipedia.exceptions.PageError:
+                    st.write("No Info found")
+            except KeyError:
+                st.write("Guest name not available")
 
         # Display the five key moments
         st.subheader("Key Moments")

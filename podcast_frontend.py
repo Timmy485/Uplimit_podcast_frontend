@@ -114,6 +114,8 @@ def main():
                     input = wikipedia.page(podcast_guest_name, auto_suggest=False)
                     podcast_guest_info = input.summary
                     st.write(podcast_guest_info)
+                except wikipedia.exceptions.DisambiguationError as e:
+                    st.write(f"Multiple possible meanings for {podcast_guest_name}. Details unavailable for now")
                 except wikipedia.exceptions.PageError:
                     st.write("No Info found")
             except KeyError:

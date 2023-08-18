@@ -7,21 +7,9 @@ import requests.exceptions
 
 
 def main():
-    
+    st.image("cover4.webp",
+             caption="cover photo", use_column_width=True)
 
-    # st.image("path_to_your_image.jpg",
-    #          caption="cover photo", use_column_width=True)
-    
-    # List of image URLs
-    image_urls = [
-        "cover1.jpg",
-        "cover3.jpg",
-        "cover2.webp",
-        "cover4.webp"
-    ]
-
-    selected_image_index = st.image_slider("", image_urls, format="URL")
-   
     st.title("Newsletter Dashboard")
     available_podcast_info = create_dict_from_json_files('.')
 

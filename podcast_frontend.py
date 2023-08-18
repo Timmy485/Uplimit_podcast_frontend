@@ -2,6 +2,7 @@ import streamlit as st
 import modal
 import json
 import os
+import wikipedia
 
 def main():
     st.title("Newsletter Dashboard")
@@ -46,12 +47,7 @@ def main():
 
         with col4:
             st.subheader("Podcast Guest Details")
-            try:
-                guest_info = json.loads(podcast_info["podcast_guest"])
-                guest_name = guest_info.get("name", "No Info found")
-                st.write(guest_name)
-            except (KeyError, json.JSONDecodeError):
-                st.write("No Info found")
+            st.write(podcast_info["podcast_guest"]['summary'])
 
         # Display the five key moments
         st.subheader("Key Moments")
@@ -99,7 +95,13 @@ def main():
 
         with col4:
             st.subheader("Podcast Guest Details")
-            st.write(podcast_info["podcast_guest"]['summary'])
+            try:
+                podcast_guest_name = podcast_info['podcast_guest']
+                input = wikipedia.page(podcast_guest_name, auto_suggest=False)
+                podcast_guest_info = input.summary
+                st.write(podcast_guest_info)
+            except (KeyError):
+                st.write("No Info found")
 
         # Display the five key moments
         st.subheader("Key Moments")

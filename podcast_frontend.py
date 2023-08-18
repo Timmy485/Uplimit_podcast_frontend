@@ -28,12 +28,6 @@ def main():
         st.subheader("Episode Title")
         st.write(podcast_info['podcast_details']['episode_title'])
 
-        col5, _ = st.columns([1, 3])
-        # Display the podcast cover image
-        with col5:
-            st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover", width=300)
-
-
         # Display the podcast summary and the cover image in a side-by-side layout
         col1, col2 = st.columns([7, 3])
 
@@ -42,8 +36,8 @@ def main():
             st.subheader("Podcast Episode Summary")
             st.write(podcast_info['podcast_summary'])
 
-        # with col2:
-        #     st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover", width=300, use_column_width=True)
+        with col2:
+            st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover", width=300, use_column_width=True)
 
         # Display the podcast guest and their details in a side-by-side layout
         col3, col4 = st.columns([3, 7])

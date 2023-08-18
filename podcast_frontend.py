@@ -32,38 +32,21 @@ def main():
         st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover")
         st.subheader("Podcast Episode Summary")
         st.write(podcast_info['podcast_summary'])
-        #     st.write(podcast_info['podcast_summary'])
-        # Display the podcast summary and the cover image in a side-by-side layout
-        # col1, col2 = st.columns([7, 3])
 
-        # with col1:
-        #     # Display the podcast episode summary
-        #     st.subheader("Podcast Episode Summary")
-        #     st.write(podcast_info['podcast_summary'])
-
-        # with col2:
-        #     st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover", width=300, use_column_width=True)
-
-        # Display the podcast guest and their details in a side-by-side layout
-        col3, col4 = st.columns([3, 7])
-
-        with col3:
-            st.subheader("Podcast Guest")
-            st.write(podcast_info['podcast_guest'])
-
-        with col4:
+        st.subheader("Podcast Guest")
+        st.write(podcast_info['podcast_guest'])
+        try:
+            podcast_guest_name = podcast_info['podcast_guest']
             try:
-                podcast_guest_name = podcast_info['podcast_guest']
-                try:
-                    input = wikipedia.page(podcast_guest_name, auto_suggest=False)
-                    podcast_guest_info = input.summary
-                    st.write(podcast_guest_info)
-                except wikipedia.exceptions.DisambiguationError as e:
-                    st.write(f"Multiple possible meanings for {podcast_guest_name}. Details unavailable for now")
-                except wikipedia.exceptions.PageError:
-                    st.write("No Info found")
-            except KeyError:
-                st.write("Guest name not available")
+                input = wikipedia.page(podcast_guest_name, auto_suggest=False)
+                podcast_guest_info = input.summary
+                st.write(podcast_guest_info)
+            except wikipedia.exceptions.DisambiguationError as e:
+                st.write(f"Multiple possible meanings for {podcast_guest_name}. Details unavailable for now")
+            except wikipedia.exceptions.PageError:
+                st.write("No Info found")
+        except KeyError:
+            st.write("Guest name not available")
 
         # Display the five key moments
         st.subheader("Key Moments")

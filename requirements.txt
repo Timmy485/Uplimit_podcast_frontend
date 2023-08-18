@@ -1,3 +1,4 @@
 streamlit
 modal
 wikipedia
+requests

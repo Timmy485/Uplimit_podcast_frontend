@@ -3,6 +3,7 @@ import modal
 import json
 import os
 import wikipedia
+import requests.exceptions
 
 def main():
     st.title("Newsletter Dashboard")
@@ -132,10 +133,18 @@ def create_dict_from_json_files(folder_path):
 
     return data_dict
 
+# def process_podcast_info(url):
+#     f = modal.Function.lookup("corise-podcast-project", "process_podcast")
+#     output = f.call(url, '/content/podcast/')
+#     return output
+
 def process_podcast_info(url):
-    f = modal.Function.lookup("corise-podcast-project", "process_podcast")
-    output = f.call(url, '/content/podcast/')
-    return output
+    try:
+        f = modal.Function.lookup("corise-podcast-project", "process_podcast")
+        output = f.call(url, '/content/podcast/')
+        return output
+    except requests.exceptions.ConnectTimeout:
+        return {"error": "Connection timeout. Please check the podcast URL and your internet connection."}
 
 if __name__ == '__main__':
     main()

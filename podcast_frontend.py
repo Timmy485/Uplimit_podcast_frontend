@@ -73,6 +73,9 @@ def main():
     st.sidebar.markdown("**Note**: Podcast processing can take upto 5 mins, please be patient.")
 
     if process_button:
+        # Clear the existing content
+        st.header("Newsletter Content")
+        st.empty()
 
         # Call the function to process the URLs and retrieve podcast guest information
         podcast_info = process_podcast_info(url)

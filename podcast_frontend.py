@@ -28,16 +28,21 @@ def main():
         st.subheader("Episode Title")
         st.write(podcast_info['podcast_details']['episode_title'])
 
+
+        st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover", width=500)
+        st.subheader("Podcast Episode Summary")
+        st.write(podcast_info['podcast_summary'])
+        #     st.write(podcast_info['podcast_summary'])
         # Display the podcast summary and the cover image in a side-by-side layout
-        col1, col2 = st.columns([7, 3])
+        # col1, col2 = st.columns([7, 3])
 
-        with col1:
-            # Display the podcast episode summary
-            st.subheader("Podcast Episode Summary")
-            st.write(podcast_info['podcast_summary'])
+        # with col1:
+        #     # Display the podcast episode summary
+        #     st.subheader("Podcast Episode Summary")
+        #     st.write(podcast_info['podcast_summary'])
 
-        with col2:
-            st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover", width=300, use_column_width=True)
+        # with col2:
+        #     st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover", width=300, use_column_width=True)
 
         # Display the podcast guest and their details in a side-by-side layout
         col3, col4 = st.columns([3, 7])
@@ -144,10 +149,6 @@ def create_dict_from_json_files(folder_path):
 
     return data_dict
 
-# def process_podcast_info(url):
-#     f = modal.Function.lookup("corise-podcast-project", "process_podcast")
-#     output = f.call(url, '/content/podcast/')
-#     return output
 
 def process_podcast_info(url):
     try:

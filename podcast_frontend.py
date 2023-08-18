@@ -29,7 +29,7 @@ def main():
         st.write(podcast_info['podcast_details']['episode_title'])
 
 
-        st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover", width=500)
+        st.image(podcast_info['podcast_details']['episode_image'], caption="Podcast Cover")
         st.subheader("Podcast Episode Summary")
         st.write(podcast_info['podcast_summary'])
         #     st.write(podcast_info['podcast_summary'])

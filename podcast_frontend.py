@@ -10,7 +10,17 @@ def main():
     st.image("cover4.webp",
              caption="cover photo", use_column_width=True)
 
-    st.title("Newsletter Dashboard")
+    st.markdown(
+        """
+        <style>
+        .title {
+            text-align: center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    st.title("Podcast Discovery Newsletter Generator")
     available_podcast_info = create_dict_from_json_files('.')
 
     # Left section - Input fields

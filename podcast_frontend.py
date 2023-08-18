@@ -47,9 +47,10 @@ def main():
         with col4:
             st.subheader("Podcast Guest Details")
             try:
-                guest_summary = podcast_info["podcast_guest"]["summary"]
-                st.write(guest_summary)
-            except KeyError:
+                guest_info = json.loads(podcast_info["podcast_guest"])
+                guest_name = guest_info.get("name", "No Info found")
+                st.write(guest_name)
+            except (KeyError, json.JSONDecodeError):
                 st.write("No Info found")
 
         # Display the five key moments

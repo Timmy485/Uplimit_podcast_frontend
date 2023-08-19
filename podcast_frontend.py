@@ -7,7 +7,8 @@ import requests.exceptions
 
 
 def main():
-    st.image("cover6.png")
+    st.image("cover6.png",
+             use_column_width=True)
 
     st.markdown("<h1 style='text-align: center;'>PODCAST DISCOVERY NEWSLETTER GENERATOR</h1>",
                 unsafe_allow_html=True)

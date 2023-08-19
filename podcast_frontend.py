@@ -7,10 +7,10 @@ import requests.exceptions
 
 
 def main():
-    st.image("cover6.png",
-             use_column_width=True)
-    st.markdown("<h1 style='text-align: center;'>PODCAST DISCOVERY NEWSLETTER GENERATOR</h1>", unsafe_allow_html=True)
-    # st.title("PODCAST DISCOVERY NEWSLETTER GENERATOR")
+    st.image("cover6.png")
+
+    st.markdown("<h1 style='text-align: center;'>PODCAST DISCOVERY NEWSLETTER GENERATOR</h1>",
+                unsafe_allow_html=True)
 
     available_podcast_info = create_dict_from_json_files('.')
 

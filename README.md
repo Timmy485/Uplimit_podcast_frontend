@@ -8,10 +8,6 @@ Podcast Discovery Newsletter Generator is a project aimed at enhancing your podc
 - [Introduction](#introduction)
 - [Approach](#approach)
 - [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 

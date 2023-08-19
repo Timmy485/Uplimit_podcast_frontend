@@ -7,20 +7,11 @@ import requests.exceptions
 
 
 def main():
-    st.image("cover4.webp",
-             caption="cover photo", use_column_width=True)
+    st.image("cover6.png",
+             use_column_width=True)
 
-    st.markdown(
-        """
-        <style>
-        .title {
-            text-align: center;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-    st.title("Podcast Discovery Newsletter Generator")
+    st.title("PODCAST DISCOVERY NEWSLETTER GENERATOR")
+
     available_podcast_info = create_dict_from_json_files('.')
 
     # Left section - Input fields
@@ -36,14 +27,15 @@ def main():
         podcast_info = available_podcast_info[selected_podcast]
 
         # Right section - Newsletter content
-        st.header("Newsletter Content")
+        st.header("Podcast Name")
+        st.write(podcast_info['podcast_details']['podcast_title'])
+        st.image(podcast_info['podcast_details']
+                 ['episode_image'])
 
         # Display the podcast title
         st.subheader("Episode Title")
         st.write(podcast_info['podcast_details']['episode_title'])
 
-        st.image(podcast_info['podcast_details']
-                 ['episode_image'], caption="Podcast Cover")
         st.subheader("Podcast Episode Summary")
         st.write(podcast_info['podcast_summary'])
 
@@ -79,56 +71,38 @@ def main():
         "**Note**: Podcast processing can take upto 5 mins, please be patient.")
 
     if process_button:
-        # Clear the existing content
-        col1.empty()
-        col2.empty()
-        col3.empty()
-        col4.empty()
-
         # Call the function to process the URLs and retrieve podcast guest information
         podcast_info = process_podcast_info(url)
 
         # Right section - Newsletter content
-        st.header("Newsletter Content")
+        st.header("Podcast Name")
+        st.write(podcast_info['podcast_details']['podcast_title'])
+
+        st.image(podcast_info['podcast_details']
+                 ['episode_image'])
 
         # Display the podcast title
         st.subheader("Episode Title")
         st.write(podcast_info['podcast_details']['episode_title'])
 
-        # Display the podcast summary and the cover image in a side-by-side layout
-        col1, col2 = st.columns([7, 3])
+        st.subheader("Podcast Episode Summary")
+        st.write(podcast_info['podcast_summary'])
 
-        with col1:
-            # Display the podcast episode summary
-            st.subheader("Podcast Episode Summary")
-            st.write(podcast_info['podcast_summary'])
-
-        with col2:
-            st.image(podcast_info['podcast_details']['episode_image'],
-                     caption="Podcast Cover", width=300, use_column_width=True)
-
-        # Display the podcast guest and their details in a side-by-side layout
-        col3, col4 = st.columns([3, 7])
-
-        with col3:
-            st.subheader("Podcast Guest")
-            st.write(podcast_info['podcast_guest'])
-
-        with col4:
+        st.subheader("Podcast Guest")
+        st.write(podcast_info['podcast_guest'])
+        try:
+            podcast_guest_name = podcast_info['podcast_guest']
             try:
-                podcast_guest_name = podcast_info['podcast_guest']
-                try:
-                    input = wikipedia.page(
-                        podcast_guest_name, auto_suggest=False)
-                    podcast_guest_info = input.summary
-                    st.write(podcast_guest_info)
-                except wikipedia.exceptions.DisambiguationError as e:
-                    st.write(
-                        f"Multiple possible meanings for {podcast_guest_name}. Details unavailable for now")
-                except wikipedia.exceptions.PageError:
-                    st.write("No Info found")
-            except KeyError:
-                st.write("Guest name not available")
+                input = wikipedia.page(podcast_guest_name, auto_suggest=False)
+                podcast_guest_info = input.summary
+                st.write(podcast_guest_info)
+            except wikipedia.exceptions.DisambiguationError as e:
+                st.write(
+                    f"Multiple possible meanings for {podcast_guest_name}. Details unavailable for now")
+            except wikipedia.exceptions.PageError:
+                st.write("No Info found")
+        except KeyError:
+            st.write("Guest name not available")
 
         # Display the five key moments
         st.subheader("Key Moments")

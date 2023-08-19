@@ -27,7 +27,7 @@ def main():
         podcast_info = available_podcast_info[selected_podcast]
 
         # Right section - Newsletter content
-        st.header("Podcast Name")
+        st.subheader("Podcast Name")
         st.write(podcast_info['podcast_details']['podcast_title'])
         st.image(podcast_info['podcast_details']
                  ['episode_image'])
